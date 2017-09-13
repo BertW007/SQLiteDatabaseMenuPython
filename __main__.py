@@ -1,12 +1,11 @@
 __author__ = 'Alex'
 import sqlite3
+from src.CreateDatabaseTable import Create
+from src.UI import UI
 def main():
-    # declares the sqlite file
-    sqlite_file = "sqlite_file"
+    decision = UI
+    decision.Interface(decision)
 
-    # connects to sqlite with selected sqlite file
-    connect = sqlite3.connect(sqlite_file)
-    connect.cursor()
 
 
 if __name__ == '__main__':
