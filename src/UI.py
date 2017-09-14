@@ -2,15 +2,19 @@ __author__ = 'Alex'
 from src.CreateDatabaseTable import Create
 from src.AddTableRow import AddRow
 from src.UpdateTableRow import UpdateRow
+from src.DeleteTableRow import DeleteRow
+from src.DisplayTableRows import DisplayRows
 class UI:
     def __init__(self):
         pass
 
     def Interface(self):
-        # gets instance for the Create class
+        # gets instance for classes
         database = Create
         add = AddRow
         update = UpdateRow
+        delete = DeleteRow
+        display = DisplayRows
 
         # variable to get file connection
         file = database.Create_Database(database)
@@ -18,7 +22,9 @@ class UI:
         cursor = database.get_cursor(database, connection)
         userOption = 7
 
+        # loops until user enters in a 0
         while userOption != 0:
+            # calls option method
             UI.Options(UI)
             userOption = int(input("Which option would you like to select? "))
 
@@ -57,11 +63,31 @@ class UI:
                 print("-----OPTION 4-------------------------------------------\n")
 
                 # variables and parameters to update a row in the Products table
-
+                deleteRow = input("Enter RowID of row you would like to delete: ")
 
                 # sends information to class to update
-                update.row(update, cursor, connection)
+                delete.row(delete, cursor, connection, deleteRow)
 
+            if userOption == 5:
+                print("-----OPTION 5-------------------------------------------\n")
+                display.allRows(display, connection)
+
+            if userOption == 6:
+                print("-----OPTION 6-------------------------------------------\n")
+
+                selectedID = input("Enter in a RowID to view: ")
+                display.singleRow(display, connection, selectedID)
+
+        # closes connection to database
+        connection.close()
+        print()
+        print("Connection to " + file + " closed!")
+
+
+
+
+
+    # method that displays
     def Options(self):
         option1 = "1): Create a new Database and Database Table"
         option2 = "2): Add a row of data to Table"

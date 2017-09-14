@@ -5,11 +5,8 @@ from src.UI import UI
 def main():
     # gets instance for Classes
     decision = UI
-
     # sets variable databaseName = a users input for a filename
     decision.Interface(decision)
-
-
 
 if __name__ == '__main__':
     main()
