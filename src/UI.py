@@ -12,7 +12,8 @@ class UI:
 
         # variable to get file connection
         file = database.Create_Database(database)
-        cursor = database.Connect(database, file)
+        connection = database.Connect(database, file)
+        cursor = database.get_cursor(database, connection)
         userOption = 7
 
         while userOption != 0:
@@ -28,7 +29,15 @@ class UI:
             if userOption == 2:
                 print("-----OPTION 2-------------------------------------------\n")
 
-                add.row(add, cursor)
+                #variables to add to Table row
+                id = int(input("Enter in a RowID: "))
+                productID = int(input("Enter in the ProductID: "))
+                productName = input("Enter in the Product Name: ")
+                quantity = int(input("Enter in the Quantity: "))
+                price = float(input("Enter in the Price: "))
+                description = str(input("Enter in a Product Description: "))
+
+                add.row(add, cursor, connection, id, productID, productName, quantity, price, description)
 
 
 
